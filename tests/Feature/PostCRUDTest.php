@@ -18,8 +18,33 @@ class PostCRUDTest extends TestCase
         $this->assertTrue(true);
     }
 
-    public function testGetPosts()
+    public function testFetchAllPosts()
     {
-        
+        $response = $this->get('/api/posts');
+
+        $response->assertStatus(200);
     }
+
+    public function testCreatingPost()
+    {
+        $response = $this->post('/api/posts');
+
+        $response->assertStatus(200);
+    }
+
+    public function testRetrievingAPost()
+    {
+        $response = $this->get('api/posts/', ['id' => 1]);
+
+        $response->assertStatus(200);
+    }
+
+    public function testUpdatingPost()
+    {
+        $response = $this->patch('api/posts', ['id' => 1]);
+
+        $response->assertStatus(200);
+    }
+
+
 }
